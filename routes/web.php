@@ -14,10 +14,13 @@ use App\Http\Controllers\UploadFileController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return redirect()->route('login');
 });
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/upload/file', [UploadFileController::class, 'uploadFile'])->name('upload.file');
+Route::post('/file/upload/store', [UploadFileController::class, 'fileStore'])->name('file.upload.store');
+
+Route::post('/user/share/image/create', [UploadFileController::class, 'userShareImageCreate'])->name('user.share.image.create');
+Route::get('/user/share/files', [UploadFileController::class, 'userShareFiles'])->name('user.share.files');
